@@ -38,7 +38,7 @@ $(DEB): $(SOURCE)_$(PKGVERSION).orig.tar.bz2 $(SOURCE)_$(DEBVERSION).debian.tar.
 download: $(SOURCE)_$(PKGVERSION).orig.tar.bz2 $(SOURCE)_$(DEBVERSION).debian.tar.xz
 $(SOURCE)_$(PKGVERSION).orig.tar.bz2: $(SOURCE)_$(DEBVERSION).debian.tar.xz
 $(SOURCE)_$(DEBVERSION).debian.tar.xz:
-	dget http://deb.debian.org/debian/pool/main/s/spice/spice_0.14.2-4.dsc
+	wget http://deb.debian.org/debian/pool/main/s/spice/spice_0.14.2-4.dsc
 
 .PHONY: upload
 upload: ${DEBS}
