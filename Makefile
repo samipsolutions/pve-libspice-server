@@ -1,9 +1,9 @@
 SOURCE=spice
 PACKAGE=libspice-server1
 
-PKGVERSION=0.14.2
-DEBVERSION=0.14.2-4
-PVERELEASE=pve6+1
+PKGVERSION=0.14.3
+DEBVERSION=0.14.3
+PVERELEASE=pve6+1+samipsolutions
 
 VERSION := $(DEBVERSION)~$(PVERELEASE)
 
@@ -26,7 +26,7 @@ $(DEB_DBG): $(DEB)
 $(DEB): $(SOURCE)_$(PKGVERSION).orig.tar.bz2 $(SOURCE)_$(DEBVERSION).debian.tar.xz
 	rm -rf ${PKGDIR}
 	tar xf $(SOURCE)_$(PKGVERSION).orig.tar.bz2
-	tar xf $(SOURCE)_$(DEBVERSION).debian.tar.xz -C $(SOURCE)-$(PKGVERSION)
+	tar xf $(SOURCE)_0.14.3-2.1.debian.tar.xz -C $(SOURCE)-$(PKGVERSION)
 	cat changelog.Debian $(PKGDIR)/debian/changelog > $(PKGDIR)/debian/changelog.tmp
 	mv $(PKGDIR)/debian/changelog.tmp $(PKGDIR)/debian/changelog
 	cd $(PKGDIR); for patch in ../patches/*.patch; do echo "applying patch '$$patch'" && patch -p1 < "$${patch}"; done
@@ -38,7 +38,7 @@ $(DEB): $(SOURCE)_$(PKGVERSION).orig.tar.bz2 $(SOURCE)_$(DEBVERSION).debian.tar.
 download: $(SOURCE)_$(PKGVERSION).orig.tar.bz2 $(SOURCE)_$(DEBVERSION).debian.tar.xz
 $(SOURCE)_$(PKGVERSION).orig.tar.bz2: $(SOURCE)_$(DEBVERSION).debian.tar.xz
 $(SOURCE)_$(DEBVERSION).debian.tar.xz:
-	wget http://deb.debian.org/debian/pool/main/s/spice/spice_0.14.2-4.dsc
+	wget http://deb.debian.org/debian/pool/main/s/spice/spice_0.14.3-2.1.dsc
 
 .PHONY: upload
 upload: ${DEBS}
